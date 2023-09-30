@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+
+    <head>
+        <style type="text/css">
+            body {
+                /* background-image: url(https://system.na2.netsuite.com/core/media/media.nl?id=347&amp;c=5221833&amp;h=4318364cf417bf94489e); */
+                /* background-color: red; */
+                font-family: Verdana, Geneva, Tahoma, Sans-Serif;
+                font-size: 10pt
+            }
+
+            .address {
+                font-size: 7pt
+            }
+
+            .msg {
+                font-size: 7pt
+            }
+
+            .terms {
+                font-size: 7pt
+            }
+
+            .amountText {
+                font-size: 8pt
+            }
+
+            .all-bordered td {
+                border: 1px solid black
+            }
+
+            table .top-bordered thead td {
+                border-collapse: collapse;
+            }
+
+            .top-bordered thead td {
+                border: 1px solid black
+            }
+
+            .top-bordered tbody td {
+                border-left: 1px solid black;
+                border-right: 1px solid black
+            }
+
+            .top-bordered tbody {
+                border-bottom: 1px solid black
+            }
+
+            .top-bordered tfoot td {
+                border: 1px solid black
+            }
+
+            .wide {
+                width: 100%;
+            }
+
+            .light td {
+                /* border: 1px dashed gray; */
+                valign: middle;
+            }
+
+            .light tr {
+                height: 0.8cm;
+            }
+
+            .summary {
+                height: 1cm;
+                valign: middle;
+            }
+        </style>
+        <macrolist>
+            <macro id="header">
+                <table class="wide light" margin-left="0.3in" margin-top="0.85in" margin-right="0.8in">
+                    <tr>
+                        <td width="1.46in">&nbsp;</td>
+                        <td width="3in" padding-left="">{{ customerCode }}</td>
+                        <td width="0.4in">&nbsp;</td>
+                        <td width="1.25in" padding-top="5" padding-left="0.5in">{{ trandate }}</td>
+                        <td width="0.80in" padding-left="5">&nbsp;</td>
+                        <td padding-left="0.5in">{{ tranid }}</td>
+                    </tr>
+                </table>
+                <table class="wide light" margin-left="0.3in" margin-top="4" margin-right="0.8in" >
+                    <tr>
+                        <td width="1.2in"></td>
+                        <td width="4.1in">{{ customerName}}</td>
+                        <td width="1.3in"></td>
+                        <td >{{ otherrefnum }}</td>
+                    </tr>
+                    <tr padding-top="4">
+
+                        <td rowspan="2"></td>
+                        <td rowspan="2" class="address">{{{ billaddress }}}</td>
+                        <td></td>
+                        <td class="terms"  style="font-size:12px">{{ terms }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td padding-top="10">{{ duedate }}</td>
+                    </tr>
+                </table>
+                <table class="wide light" margin-left="0.3in" margin-right="0.3in" >
+                    <tr>
+                        <td width="1.4in"></td>
+                        <td width="1in" padding-top="0.2in">{{ vatregnum }}</td>
+                        <td width="0.7in"></td>
+                        <td width="1.7in" padding-top="0.2in">{{ branch }}</td>
+                        <td width="0.3in"></td>
+                        <td padding-top="8" padding-left="0.8in"  style="font-size:10px" align="left">{{ salesrep }}</td>
+                    </tr>
+                </table>
+            </macro>
+            <macro id="footer">
+                <table class="wide light" margin-left="0.1in" margin-right="0.3in" padding-top="in">
+                    <tr padding-right="0.05">
+                        <td rowspan="2" width="5.25in" padding-left="10px" padding-top="in" class="msg">{{{ message }}}</td>
+                        <td width="2in">&nbsp;</td>
+                        <td width="1.25in" align="right" padding-right="">{{ subtotal }}</td>
+                    </tr>
+                    <tr padding-right="0.05">
+                        <td width="2in" align="right" padding-right="45">{{ taxrate }}</td>
+                        <td width="1.25in" align="right" padding-right="">{{ taxtotal }}</td>
+                    </tr>
+                </table>
+                <table class="wide light" margin-left="0.1in" margin-right="0.3in" margin-top="0.1in">
+                    <tr padding-right="0.03">
+                        <td width="0.5in">&nbsp;</td>
+                        <td class="amountText" width="5in">{{ amountInWords }}</td>
+                        <td >&nbsp;</td>
+                        <td width="1.25in" align="right" padding-right="">{{ total }}</td>
+                    </tr>
+                </table>
+            </macro>
+        </macrolist>
+    </head>
+
+    <body margin="0" padding="0.25in" padding-right="0" header="header" header-height="3in" footer="footer" footer-height="3.5in">
+        <table class="light wide" margin-left="0.1in" margin-right="0.35in" style="table-layout:fixed;">
+            {{#item}}
+            <tr padding-top="0.05in" padding-right="0.05" >
+                <td padding-top="0.1in" width="48px" align="center" valign="top">{{ serial }}</td>
+                <td padding-top="0.1in" width="280px" margin-right="0.25in" valign="" style="word-wrap:break-word;overflow-wrap:break-word;">{{ item }}<br />&nbsp;&nbsp;&nbsp;&nbsp;{{ custcol_ogb_cust_po }}</td>
+                <td padding-top="0.1in" width="90px" align="center" valign="">{{ quantity }}</td>
+                <td padding-top="0.1in" width="80px" valign="" align="center">{{ unit }}</td>
+                <td padding-top="0.1in" width="80px" align="right" valign="" >{{ rate }}</td>
+                <td padding-top="0.1in" align="right" valign="" padding-right="">{{ amount }}</td>
+            </tr>
+            {{/item}}
+        </table>
+    </body>
+</pdf>

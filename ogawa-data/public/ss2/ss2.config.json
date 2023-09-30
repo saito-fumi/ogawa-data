@@ -1,0 +1,6 @@
+{
+    "baseUrl": "SuiteScripts/ss2",
+    "paths": {      
+      "ps/templating": "lib/templating"
+    }
+  }
